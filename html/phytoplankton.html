@@ -13127,6 +13127,7 @@ div#notebook {
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;../statistics_helper/&#39;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">stats_helper</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">fraction_helper</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">CI_helper</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">excel_utils</span> <span class="k">import</span> <span class="o">*</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.1e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
 </pre></div>
@@ -13339,6 +13340,7 @@ div#notebook {
 <span class="n">bottom_plant</span> <span class="o">=</span> <span class="p">(</span><span class="n">bottom_cyano</span><span class="o">+</span><span class="n">diatom_biomsss</span><span class="o">+</span><span class="n">phaeocystis_biomsss</span><span class="o">+</span><span class="n">auto_picoeuk_biomass</span><span class="p">)</span><span class="o">*</span><span class="mf">0.15</span><span class="o">/</span><span class="mf">0.85</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;We estimate the global biomass of phytoplankton based on our bottom-up approach at ≈</span><span class="si">%.1f</span><span class="s1"> Gt C&#39;</span> <span class="o">%</span> <span class="p">((</span><span class="n">bottom_cyano</span><span class="o">+</span><span class="n">bottom_plant</span><span class="o">+</span><span class="n">bottom_protist</span><span class="p">)</span><span class="o">/</span><span class="mf">1e15</span><span class="p">))</span>
+<span class="n">bottom_cyano</span><span class="o">/</span><span class="mf">1e15</span>
 </pre></div>
 
     </div>
@@ -13358,6 +13360,19 @@ div#notebook {
 <pre>We estimate the global biomass of phytoplankton based on our bottom-up approach at ≈1.1 Gt C
 </pre>
 </div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.17191590536954346</pre>
+</div>
+
 </div>
 
 </div>
@@ -13631,7 +13646,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Our best projection for the uncertainty associated with our estimate of the global biomass of plant phytoplankton is ≈3.6-fold
+<pre>Our best projection for the uncertainty associated with our estimate of the global biomass of plant phytoplankton is ≈2.9-fold
 </pre>
 </div>
 </div>
@@ -13663,7 +13678,7 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Our best projection for the uncertainty associated with our estimate of the global biomass of protist phytoplankton is ≈9.3-fold
+<pre>Our best projection for the uncertainty associated with our estimate of the global biomass of protist phytoplankton is ≈6.3-fold
 </pre>
 </div>
 </div>
@@ -13692,8 +13707,8 @@ div#notebook {
 
 <span class="n">update_results</span><span class="p">(</span><span class="n">sheet</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span> 
                <span class="n">row</span><span class="o">=</span><span class="s1">&#39;Green algae phytoplankton&#39;</span><span class="p">,</span> 
-               <span class="n">col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Biomass&#39;</span><span class="p">,</span> <span class="s1">&#39;Uncertainty&#39;</span><span class="p">],</span>
-               <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">best_plant</span><span class="o">/</span><span class="mf">1e15</span><span class="p">,</span><span class="n">plant_CI</span><span class="p">],</span>
+               <span class="n">col</span><span class="o">=</span><span class="s1">&#39;Biomass&#39;</span><span class="p">,</span>
+               <span class="n">values</span><span class="o">=</span><span class="n">best_plant</span><span class="o">/</span><span class="mf">1e15</span><span class="p">,</span>
                <span class="n">path</span><span class="o">=</span><span class="s1">&#39;../results/results.xlsx&#39;</span><span class="p">)</span>
 
 <span class="n">update_results</span><span class="p">(</span><span class="n">sheet</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span> 

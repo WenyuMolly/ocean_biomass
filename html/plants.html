@@ -13127,6 +13127,7 @@ div#notebook {
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;../statistics_helper/&#39;</span><span class="p">)</span>
 <span class="kn">from</span> <span class="nn">stats_helper</span> <span class="k">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">excel_utils</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">CI_helper</span> <span class="k">import</span> <span class="o">*</span>
 <span class="n">pd</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">float_format</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:,.1e}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span>
 </pre></div>
 
@@ -13149,7 +13150,8 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">green_micro</span> <span class="o">=</span> <span class="mf">0.1e15</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;../results/results.xlsx&#39;</span><span class="p">,</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
+<span class="n">green_micro</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">results</span><span class="o">.</span><span class="n">Taxon</span><span class="o">==</span><span class="s1">&#39;Green algae phytoplankton&#39;</span><span class="p">,</span><span class="s1">&#39;Biomass&#39;</span><span class="p">]</span><span class="o">*</span><span class="mf">1e15</span>
 </pre></div>
 
     </div>
@@ -13295,7 +13297,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cebrian</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;../data/macroalgae_biomass_data.xls&#39;</span><span class="p">)</span>
@@ -13339,7 +13341,7 @@ arithmetic mean: 185.80942793027253
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">best_macro_density</span> <span class="o">=</span> <span class="n">gmean</span><span class="p">([</span><span class="n">gmean</span><span class="p">(</span><span class="n">macro_data</span><span class="p">[</span><span class="s1">&#39;PB (gCm-2)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)),</span><span class="n">macro_data</span><span class="p">[</span><span class="s1">&#39;PB (gCm-2)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
@@ -13379,7 +13381,7 @@ arithmetic mean: 185.80942793027253
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">macro_biomass</span> <span class="o">=</span> <span class="n">best_macro_density</span><span class="o">*</span><span class="n">macro_area</span>
@@ -13427,7 +13429,7 @@ arithmetic mean: 185.80942793027253
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">marine_plants</span> <span class="o">=</span> <span class="n">macro_biomass</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">best_seagrass</span><span class="o">+</span><span class="n">green_micro</span>
@@ -13467,7 +13469,7 @@ arithmetic mean: 185.80942793027253
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">micro_CI</span> <span class="o">=</span> <span class="mi">10</span>
@@ -13488,7 +13490,7 @@ arithmetic mean: 185.80942793027253
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate the 95% confidence interval for the biomass density of seagrasses</span>
@@ -13517,7 +13519,7 @@ arithmetic mean: 185.80942793027253
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Our best projection of the uncertainty associated with our estimate of the biomass of seagrasses is ≈4-fold
+<pre>Our best projection of the uncertainty associated with our estimate of the biomass of seagrasses is ≈3-fold
 </pre>
 </div>
 </div>
@@ -13537,7 +13539,7 @@ For the biomass density of macroalgae, we rely on the 95% confidence interval ar
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate the 95% confidence interval for the biomass density of macroalgae</span>
@@ -13566,7 +13568,7 @@ For the biomass density of macroalgae, we rely on the 95% confidence interval ar
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Our best projection of the uncertainty associated with our estimate of the biomass of macroalgae is ≈5-fold
+<pre>Our best projection of the uncertainty associated with our estimate of the biomass of macroalgae is ≈2-fold
 </pre>
 </div>
 </div>
@@ -13585,11 +13587,11 @@ For the biomass density of macroalgae, we rely on the 95% confidence interval ar
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">marine_plant_CI</span> <span class="o">=</span> <span class="n">CI_sum_prop</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">green_micro</span><span class="p">,</span><span class="n">best_seagrass</span><span class="p">,</span><span class="n">macro_biomass</span><span class="p">]),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">micro_CI</span><span class="p">,</span><span class="n">seagrass_CI</span><span class="p">,</span><span class="n">macro_CI</span><span class="p">]))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Our best projection of the uncertainty associated with our estimate of the biomass of marine plants is ≈</span><span class="si">%.0f</span><span class="s1">-fold&#39;</span> <span class="o">%</span> <span class="n">marine_plant_CI</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Our best projection of the uncertainty associated with our estimate of the biomass of marine plants is ≈</span><span class="si">%.1f</span><span class="s1">-fold&#39;</span> <span class="o">%</span> <span class="n">marine_plant_CI</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13606,7 +13608,7 @@ For the biomass density of macroalgae, we rely on the 95% confidence interval ar
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Our best projection of the uncertainty associated with our estimate of the biomass of marine plants is ≈3-fold
+<pre>Our best projection of the uncertainty associated with our estimate of the biomass of marine plants is ≈2.2-fold
 </pre>
 </div>
 </div>
@@ -13617,7 +13619,7 @@ For the biomass density of macroalgae, we rely on the 95% confidence interval ar
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">update_results</span><span class="p">(</span><span class="n">sheet</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span> 
@@ -13636,6 +13638,12 @@ For the biomass density of macroalgae, we rely on the 95% confidence interval ar
                <span class="n">row</span><span class="o">=</span><span class="s1">&#39;Protist macroalgae&#39;</span><span class="p">,</span> 
                <span class="n">col</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Biomass&#39;</span><span class="p">,</span> <span class="s1">&#39;Uncertainty&#39;</span><span class="p">],</span>
                <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="n">macro_biomass</span><span class="o">/</span><span class="mf">1e15</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">macro_CI</span><span class="p">],</span>
+               <span class="n">path</span><span class="o">=</span><span class="s1">&#39;../results/results.xlsx&#39;</span><span class="p">)</span>
+
+<span class="n">update_results</span><span class="p">(</span><span class="n">sheet</span><span class="o">=</span><span class="s1">&#39;Data&#39;</span><span class="p">,</span> 
+               <span class="n">row</span><span class="o">=</span><span class="s1">&#39;Green algae phytoplankton&#39;</span><span class="p">,</span> 
+               <span class="n">col</span><span class="o">=</span><span class="s1">&#39;Uncertainty&#39;</span><span class="p">,</span>
+               <span class="n">values</span><span class="o">=</span><span class="n">micro_CI</span><span class="p">,</span>
                <span class="n">path</span><span class="o">=</span><span class="s1">&#39;../results/results.xlsx&#39;</span><span class="p">)</span>
 </pre></div>
 
