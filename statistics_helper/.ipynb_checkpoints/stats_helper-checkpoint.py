@@ -1,6 +1,15 @@
 import numpy as np
 from scipy.stats import gmean
 
+def mul_CI_SD_SE(vals):
+    # Define a function to calculate the multiplicative 95% confidence interval of a list of measurements
+    vals = np.stack(vals)
+    sem = 10**(np.log10(vals).std()/np.sqrt(len(vals))*1.96)
+    sd = 10**(np.log10(vals).std()*1.96)
+    return gmean([sem,sd])
+
+
+'''
 def geo_CI_calc(estimates):
     """ 
     This function calculates the 95% multiplicative confidence interval of the input
@@ -13,12 +22,6 @@ def geo_CI_calc(estimates):
     return gmean([mul_CI_sem,mul_CI_sd])
 
 
-def mul_CI(vals):
-    # Define a function to calculate the multiplicative 95% confidence interval of a list of measurements
-    vals = np.stack(vals)
-    sem = 10**(np.log10(vals).std()/np.sqrt(len(vals))*1.96)
-    sd = 10**(np.log10(vals).std()*1.96)
-    return gmean([sem,sd])
 
 
 def CI_prod_prop(mul_CIs):
@@ -56,3 +59,5 @@ def CI_sum_prop(estimates, mul_CIs):
 
     # Return the mean of the upper and lower multiplicative values
     return np.mean([upper_CI,lower_CI])
+    
+'''

@@ -11,12 +11,12 @@ def geo_CI_calc(estimates):
     """
     mul_CI = 10**(np.log10(estimates).std(ddof=1)/np.sqrt(len(estimates))*1.96)
     return mul_CI
-
-#def geo_CI_calc(estimates):
-#    mul_CI_se = 10**(np.log10(estimates).std(ddof=1)/np.sqrt(len(estimates))*1.96)
-#    mul_CI_sd = 10**(np.log10(estimates).std(ddof=1)*1.96)
-#    return np.sqrt(mul_CI_se*mul_CI_sd)
-
+'''
+def geo_CI_calc(estimates):
+    mul_CI_se = 10**(np.log10(estimates).std(ddof=1)/np.sqrt(len(estimates))*1.96)
+    mul_CI_sd = 10**(np.log10(estimates).std(ddof=1)*1.96)
+    return np.sqrt(mul_CI_se*mul_CI_sd)
+'''
 def CI_sum_prop(estimates, mul_CIs):
     """
     This function calculates the 95% confidence interval of a sum of two estimates. 
